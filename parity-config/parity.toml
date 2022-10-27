@@ -1,0 +1,13 @@
+[parity]
+chain = "/parity/config/testcore.json"
+
+[rpc]
+interface = "all"
+hosts = ["all"]
+
+[websockets]
+disable = true
+
+[mining]
+tx_gas_limit = "16000000"
+gas_floor_target = "16000000"

@@ -1,0 +1,42 @@
+version: '2'
+services:
+  parity:
+    image: openethereum/openethereum:latest
+    container_name: parity_signer
+    restart: always
+    user: root
+    command:
+      # uncomment the used chain
+      --config /parity/config/parity.toml
+      --password /parity/config/pw.txt
+      --engine-signer [Authority address]
+      --nat "extip:[External IP]"
+      --min-gas-price 20000000000
+      --no-secretstore
+      --no-secretstore-http
+    volumes:
+      - ./evan-network-chain:/root/.local/share/openethereum/
+      - ./parity-config:/parity/config
+      # uncomment the used chain
+      # - ./testcore-config/testcore.json:/parity/config/testcore.json
+      # - ./core-config/core.json:/parity/config/core.json
+    ports:
+      - "30303:30303"
+      - "30303:30303/udp"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  monitor:
+    image: evannetwork/ethstats_monitor
+    container_name: ethstats_monitor
+    restart: always
+    volumes:
+      - ./ethstats/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

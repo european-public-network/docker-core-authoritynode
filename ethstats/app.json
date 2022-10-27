@@ -1,0 +1,24 @@
+[
+  {
+    "name"              : "authoritynode",
+    "script"            : "app.js",
+    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
+    "merge_logs"        : false,
+    "watch"             : true,
+    "max_restarts"      : 10,
+    "exec_interpreter"  : "node",
+    "exec_mode"         : "fork_mode",
+    "env":
+    {
+      "NODE_ENV"        : "production",
+      "RPC_HOST"        : "parity_signer",
+      "RPC_PORT"        : "8545",
+      "LISTENING_PORT"  : "30303",
+      "INSTANCE_NAME"   : "[company name] evan.network",
+      "CONTACT_DETAILS" : "[admin email]",
+      "WS_SERVER"       : "[status url]",
+      "WS_SECRET"       : "[ws secret]",
+      "VERBOSITY"       : 3
+    }
+  }
+]
